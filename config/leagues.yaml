@@ -1,0 +1,15 @@
+la_liga:
+  league_id: 140
+  country: "Spain"
+
+champions_league:
+  league_id: 2
+  country: "Europe"
+
+brasileirao:
+  league_id: 71
+  country: "Brazil"
+
+libertadores:
+  league_id: 13
+  country: "South America"
