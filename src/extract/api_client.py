@@ -30,8 +30,14 @@ class APIClient:
 
         if response.status_code != 200:
             raise Exception(
-                f"API request failed: {response.status_code} - {response.text}"
+                f"HTTP error {response.status_code}: {response.text}"
             )
 
         data = response.json()
+
+        # Handle API-level errors (like plan limitations)
+        if data.get("errors"):
+            print(f"API error: {data['errors']}")
+            return None
+
         return data.get("response", [])

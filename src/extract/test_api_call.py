@@ -1,4 +1,4 @@
-from api_client import APIClient
+from src.extract.api_client import APIClient
 
 client = APIClient()
 
