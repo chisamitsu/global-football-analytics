@@ -24,20 +24,17 @@ class APIClient:
         }
 
     def get(self, endpoint, params=None):
-        """Generic GET request to API-Football."""
         url = f"{self.base_url}/{endpoint}"
         response = requests.get(url, headers=self.headers, params=params)
 
         if response.status_code != 200:
-            raise Exception(
-                f"HTTP error {response.status_code}: {response.text}"
-            )
+            raise Exception(f"HTTP error {response.status_code}: {response.text}")
 
         data = response.json()
 
-        # Handle API-level errors (like plan limitations)
+        # API-level errors
         if data.get("errors"):
             print(f"API error: {data['errors']}")
             return None
 
-        return data.get("response", [])
+        return data
