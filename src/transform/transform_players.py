@@ -1,10 +1,10 @@
 import json
 import os
 import pandas as pd
+from src.transform.utils_filename import parse_player_filename
 
 RAW_PATH = "data/raw/players"
 PROCESSED_PATH = "data/processed"
-
 
 def transform_players():
     """
@@ -22,13 +22,8 @@ def transform_players():
         if not filename.endswith(".json"):
             continue
 
-        # Example filename: la_liga_2023_team_529_page_1.json
-        parts = filename.replace(".json", "").split("_")
-
-        league_key = parts[0] + "_" + parts[1] if len(parts) > 3 else parts[0]
-        season_year = int(parts[2])
-        team_id = int(parts[4])
-        # page = parts[-1]  # not needed for transforms
+        # filename parsing
+        league_key, season_year, team_id, _ = parse_player_filename(filename)
 
         path = os.path.join(RAW_PATH, filename)
 

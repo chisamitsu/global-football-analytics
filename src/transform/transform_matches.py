@@ -1,6 +1,7 @@
 import json
 import os
 import pandas as pd
+from src.transform.utils_filename import parse_generic_filename
 
 RAW_PATH = "data/raw/matches"
 PROCESSED_PATH = "data/processed"
@@ -40,10 +41,7 @@ def transform_matches():
         if not filename.endswith(".json"):
             continue
 
-        # Example filename: la_liga_2023.json
-        parts = filename.replace(".json", "").split("_")
-        league_key = "_".join(parts[:-1])
-        season_year = int(parts[-1])
+        league_key, season_year = parse_generic_filename(filename)
 
         path = os.path.join(RAW_PATH, filename)
 

@@ -72,10 +72,25 @@ def fetch_players(league_key: str = "la_liga", season: int | None = None, force_
                 # Incremental extraction for players
                 if not force_update and os.path.exists(file_path):
                     print(f"    Skipping page {page} — already exists.")
+
                     with open(file_path, "r") as f:
                         existing_data = json.load(f)
+
+                    # Merge existing players
                     if "response" in existing_data:
                         all_players.extend(existing_data["response"])
+
+                    # Read pagination info from existing file
+                    paging = existing_data.get("paging", {})
+                    current = paging.get("current", page)
+                    total = paging.get("total", page)
+
+                    # If this was the last page → stop
+                    if current >= total:
+                        print(f"    All {total} pages already fetched for team {team_id}.")
+                        break
+
+                    # Otherwise continue to next page
                     page += 1
                     continue
 
