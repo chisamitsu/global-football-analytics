@@ -3,14 +3,14 @@ import os
 import pandas as pd
 
 RAW_PATH = "data/raw/leagues"
-PROCESSED_PATH = "data/processed"
+CLEAN_PATH = "data/clean"
 
 
 def transform_seasons():
     """
     Build dim_season from raw league JSON files.
 
-    Output: data/processed/dim_season.parquet
+    Output: data/clean/dim_season.parquet
     Columns:
       - league_id
       - season_year
@@ -71,8 +71,8 @@ def transform_seasons():
 
     df = pd.DataFrame(rows).drop_duplicates(subset=["league_id", "season_year"])
 
-    os.makedirs(PROCESSED_PATH, exist_ok=True)
-    output_path = os.path.join(PROCESSED_PATH, "dim_season.parquet")
+    os.makedirs(CLEAN_PATH, exist_ok=True)
+    output_path = os.path.join(CLEAN_PATH, "dim_season.parquet")
 
     df.to_parquet(output_path, index=False)
     print(f"Saved {len(df)} league-season rows to {output_path}")

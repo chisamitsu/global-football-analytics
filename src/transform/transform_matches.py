@@ -4,14 +4,14 @@ import pandas as pd
 from src.transform.utils_filename import parse_generic_filename
 
 RAW_PATH = "data/raw/matches"
-PROCESSED_PATH = "data/processed"
+CLEAN_PATH = "data/clean"
 
 
 def transform_matches():
     """
     Build fact_match from raw match JSON files.
 
-    Output: data/processed/fact_match.parquet
+    Output: data/clean/fact_match.parquet
 
     Columns include:
       - fixture_id
@@ -89,8 +89,8 @@ def transform_matches():
 
     df = pd.DataFrame(rows).drop_duplicates(subset=["fixture_id"])
 
-    os.makedirs(PROCESSED_PATH, exist_ok=True)
-    output_path = os.path.join(PROCESSED_PATH, "fact_match.parquet")
+    os.makedirs(CLEAN_PATH, exist_ok=True)
+    output_path = os.path.join(CLEAN_PATH, "fact_match.parquet")
 
     df.to_parquet(output_path, index=False)
     print(f"Saved {len(df)} matches to {output_path}")

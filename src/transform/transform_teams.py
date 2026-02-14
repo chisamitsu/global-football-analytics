@@ -4,7 +4,7 @@ import pandas as pd
 from src.transform.utils_filename import parse_generic_filename
 
 RAW_PATH = "data/raw/teams"
-PROCESSED_PATH = "data/processed"
+CLEAN_PATH = "data/clean"
 
 def transform_teams():
     """
@@ -78,11 +78,11 @@ def transform_teams():
     fact_team_season = pd.DataFrame(fact_team_season_rows).drop_duplicates()
 
     # Save outputs
-    os.makedirs(PROCESSED_PATH, exist_ok=True)
+    os.makedirs(CLEAN_PATH, exist_ok=True)
 
-    dim_team.to_parquet(os.path.join(PROCESSED_PATH, "dim_team.parquet"), index=False)
-    dim_venue.to_parquet(os.path.join(PROCESSED_PATH, "dim_venue.parquet"), index=False)
-    fact_team_season.to_parquet(os.path.join(PROCESSED_PATH, "fact_team_season.parquet"), index=False)
+    dim_team.to_parquet(os.path.join(CLEAN_PATH, "dim_team.parquet"), index=False)
+    dim_venue.to_parquet(os.path.join(CLEAN_PATH, "dim_venue.parquet"), index=False)
+    fact_team_season.to_parquet(os.path.join(CLEAN_PATH, "fact_team_season.parquet"), index=False)
 
     print(f"Saved {len(dim_team)} teams, {len(dim_venue)} venues, {len(fact_team_season)} team-season rows.")
 

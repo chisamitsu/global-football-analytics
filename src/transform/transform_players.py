@@ -4,7 +4,7 @@ import pandas as pd
 from src.transform.utils_filename import parse_player_filename
 
 RAW_PATH = "data/raw/players"
-PROCESSED_PATH = "data/processed"
+CLEAN_PATH = "data/clean"
 
 def transform_players():
     """
@@ -76,10 +76,10 @@ def transform_players():
     fact_player_season = pd.DataFrame(fact_player_season_rows).drop_duplicates()
 
     # Save outputs
-    os.makedirs(PROCESSED_PATH, exist_ok=True)
+    os.makedirs(CLEAN_PATH, exist_ok=True)
 
-    dim_player.to_parquet(os.path.join(PROCESSED_PATH, "dim_player.parquet"), index=False)
-    fact_player_season.to_parquet(os.path.join(PROCESSED_PATH, "fact_player_season.parquet"), index=False)
+    dim_player.to_parquet(os.path.join(CLEAN_PATH, "dim_player.parquet"), index=False)
+    fact_player_season.to_parquet(os.path.join(CLEAN_PATH, "fact_player_season.parquet"), index=False)
 
     print(f"Saved {len(dim_player)} players and {len(fact_player_season)} player-season rows.")
 
