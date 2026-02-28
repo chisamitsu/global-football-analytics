@@ -1,15 +1,19 @@
 la_liga:
   league_id: 140
-  country: "Spain"
+  scope: "domestic"
+  region: "Europe"
 
 champions_league:
   league_id: 2
-  country: "Europe"
+  scope: "continental"
+  region: "Europe"
 
 brasileirao:
   league_id: 71
-  country: "Brazil"
+  scope: "domestic"
+  region: "South America"
 
 libertadores:
   league_id: 13
-  country: "South America"
+  scope: "continental"
+  region: "South America"

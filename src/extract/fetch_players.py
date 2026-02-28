@@ -83,18 +83,18 @@ def fetch_players(league_key: str = "la_liga", season: int | None = None, force_
                     # Read pagination info from existing file
                     paging = existing_data.get("paging", {})
                     current = paging.get("current", page)
-                    total = paging.get("total", page)
+                    total_pages = paging.get("total", page)
 
                     # If this was the last page → stop
-                    if current >= total:
-                        print(f"    All {total} pages already fetched for team {team_id}.")
+                    if current >= total_pages:
+                        print(f"    All {total_pages} pages already fetched for team {team_id}.")
                         break
 
                     # Otherwise continue to next page
                     page += 1
                     continue
 
-                print(f"    Fetching page {page}...")
+                print(f"    Fetching page {page}/{total_pages}...")
 
                 params = {
                     "league": league_id,
