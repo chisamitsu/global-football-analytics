@@ -17,3 +17,18 @@ libertadores:
   league_id: 13
   scope: "continental"
   region: "South America"
+
+copa_do_brasil:
+  league_id: 73
+  scope: "domestic"
+  region: "South America"
+
+copa_del_rey:
+  league_id: 143
+  scope: "domestic"
+  region: "Europe"
+
+world_cup:
+  league_id: 1
+  scope: "international"
+  region: "Global"
